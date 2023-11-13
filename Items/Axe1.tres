@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=4 format=3 uid="uid://c08ta5sd7anr4"]
+
+[ext_resource type="Script" path="res://Items/equippable_item.gd" id="1_mew2j"]
+[ext_resource type="Texture2D" uid="uid://djgp25d7iotr8" path="res://Art/Items/weapon_axe.png" id="2_jc5xe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju7v5"]
+size = Vector2(9, 9)
+
+[resource]
+script = ExtResource("1_mew2j")
+display_name = "Axe1"
+texture = ExtResource("2_jc5xe")
+item_position = Vector2(1.5, 6.5)
+hitbox_shape = SubResource("RectangleShape2D_ju7v5")
+hitbox_position = Vector2(0, -18)
+hitbox_rotation = 0

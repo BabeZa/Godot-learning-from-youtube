@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=4 format=3 uid="uid://gvngkxirgvd"]
+
+[ext_resource type="Script" path="res://Items/equippable_item.gd" id="1_n0nx2"]
+[ext_resource type="Texture2D" uid="uid://bs3t2lcns5mad" path="res://Art/Items/weapon_sword_golden.png" id="2_tcooa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj3mg"]
+size = Vector2(6, 12)
+
+[resource]
+script = ExtResource("1_n0nx2")
+display_name = "mySword"
+texture = ExtResource("2_tcooa")
+item_position = Vector2(0, 2)
+hitbox_shape = SubResource("RectangleShape2D_gj3mg")
+hitbox_position = Vector2(0, -13)
+hitbox_rotation = 0

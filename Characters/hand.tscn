@@ -1,0 +1,200 @@
+[gd_scene load_steps=13 format=3 uid="uid://brqgnegmo8bkd"]
+
+[ext_resource type="Texture2D" uid="uid://bs3t2lcns5mad" path="res://Art/Items/weapon_sword_golden.png" id="1_02dvu"]
+[ext_resource type="Texture2D" uid="uid://w05ygdh6o000" path="res://Art/Characters/Player-hand.png" id="2_cvu3b"]
+
+[sub_resource type="Animation" id="Animation_tt7ll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandEquip/Item/Area2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandEquip:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandEquip:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandEquip:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y27f5"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandEquip:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(5, 0), Vector2(5, 0), Vector2(5, -2), Vector2(5, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandEquip:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ju0rv"]
+resource_name = "swing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandEquip/Item/Area2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.02, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandEquip:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.523599, 2.79253, 3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("HandEquip:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandEquip:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dpklj"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljov4"]
+_data = {
+"RESET": SubResource("Animation_tt7ll"),
+"idle": SubResource("Animation_y27f5"),
+"swing": SubResource("Animation_ju0rv"),
+"walk": SubResource("Animation_dpklj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj3mg"]
+size = Vector2(6, 14)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_orlfe"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6xghv"]
+animation = &"swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eqa42"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dx8e4"]
+states/idle/node = SubResource("AnimationNodeAnimation_orlfe")
+states/idle/position = Vector2(407, 100)
+states/swing/node = SubResource("AnimationNodeAnimation_6xghv")
+states/swing/position = Vector2(630, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_eqa42")]
+
+[node name="Hand" type="Node2D"]
+position = Vector2(0, -5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ljov4")
+}
+
+[node name="HandEquip" type="Node2D" parent="."]
+position = Vector2(5, 0)
+
+[node name="Item" type="Node2D" parent="HandEquip"]
+
+[node name="EquipSprite" type="Sprite2D" parent="HandEquip/Item"]
+scale = Vector2(-1, 1)
+texture = ExtResource("1_02dvu")
+offset = Vector2(0, -13)
+
+[node name="Area2D" type="Area2D" parent="HandEquip/Item"]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HandEquip/Item/Area2D"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_gj3mg")
+disabled = true
+
+[node name="Hand" type="Sprite2D" parent="HandEquip"]
+texture = ExtResource("2_cvu3b")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_dx8e4")
+anim_player = NodePath("../AnimationPlayer")
+active = true

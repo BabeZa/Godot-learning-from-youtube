@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5mtynmbssvp7"]
+
+[ext_resource type="Script" path="res://Objects/Resources/ResourceNode.gd" id="1_bvlss"]
+[ext_resource type="Texture2D" uid="uid://d1vk0ox0myogj" path="res://Art/Objects/Bush.png" id="2_gk2pc"]
+[ext_resource type="Resource" uid="uid://c4eqf708grxt4" path="res://Objects/Resources/Types/mineable.tres" id="2_weora"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jv0mc"]
+radius = 3.0
+height = 14.0
+
+[node name="ResourceNode_Bush" type="StaticBody2D"]
+script = ExtResource("1_bvlss")
+node_types = Array[Resource("res://Objects/Resources/Types/resource_node_type.gd")]([ExtResource("2_weora")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gk2pc")
+hframes = 6
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jv0mc")

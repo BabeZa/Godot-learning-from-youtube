@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvidkg2v6grsm"]
+
+[ext_resource type="PackedScene" uid="uid://nnq55aov4wtr" path="res://Sence/world.tscn" id="1_fq5kl"]
+[ext_resource type="PackedScene" uid="uid://mhkieon654wf" path="res://Characters/player.tscn" id="2_dryxi"]
+
+[node name="Game" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_fq5kl")]
+
+[node name="Player" parent="." instance=ExtResource("2_dryxi")]
+position = Vector2(53, 52)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(53, 52)
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+position_smoothing_enabled = true
